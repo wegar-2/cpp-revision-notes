@@ -20,7 +20,7 @@ int main()
                 boost::random::normal_distribution<>>(mtRngEngine,
                                                       ndRngDistribution);
     // 1. stack arrays
-    cout << "==========     STACK ARRAY     ==========";
+    cout << "==========     STACK ARRAY     ==========" << endl;
     double StackArray[10];
     for (int k = 0; k < 10; ++k) {
         StackArray[k] = gaussianRng();
@@ -28,7 +28,7 @@ int main()
     PrintDoubleArray(StackArray, 10);
 
     // 2. heap array
-    cout << "==========     HEAP ARRAY     ==========";
+    cout << "==========     HEAP ARRAY     ==========" << endl;;
     double* ArrayOfPointers[10];
     for (int k = 0; k < 10; ++k) {
         ArrayOfPointers[k] = new double(gaussianRng());
@@ -36,8 +36,17 @@ int main()
     PrintArrayOfPointersToDouble(ArrayOfPointers, 10);
 
     // 3. arrays of pointers
-    cout << "==========     ARRAY OF POINTERS    ==========";
+    cout << "==========     ARRAY OF POINTERS    ==========" << endl;
+    double* pHeapArray = new double[10];
+    for (int k = 0; k < 10; ++k) {
+        pHeapArray[k] = gaussianRng();
+    }
+    PrintHeapArray(pHeapArray, 10);
 
+    // 4. return the memory back to heap
+    for (int k = 0; k < 10; ++k) {
+        delete ArrayOfPointers[k];
+    }
 
     return 0;
 }
